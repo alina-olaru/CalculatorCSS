@@ -1,0 +1,35 @@
+script>
+  <head>
+    <title>CALCULATOR</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
+        <script src="./calculatorController.js"></script>
+
+        <link rel="stylesheet" href="./calculator.css">
+  </head>
+  <body ng-app="myApp" ng-controller="calculatorController">
+    <div class="whole-container">
+      <div class="result-container">
+        {{firstValue || 0}}
+        <span ng-if="currentModifier">{{currentModifier}}</span>
+        <span ng-if="secondValue">{{secondValue}}</span>
+        <span ng-if="result" class="result-item">={{ result }}</span>
+        <button class="clear-button" ng-click="clearNumbers()">Clear</button>
+
+      </div>
+      <div class="number-modify-container">
+        <div class="number-container">
+          <div class="number-inner-container" ng-repeat="number in numberArray">
+            <button class="number-item" ng-click="showNumber(number)">{{ number }}</button>
+            <button class="number-item" ng-if="$idex==9" ng-click="showNumber('.')">.</button>
+
+          </div>
+        </div>
+        <div class="modify-container">
+          <button class="modify-item" ng-repeat="mod in modifiers" ngclick="makeSecondValue(mod)">{{ mod }}</button>
+        </div>
+      </div>
+      <button class="result-button" ng-click="doMath()">=</button>
+    </div>
+  </body>
+</html>
